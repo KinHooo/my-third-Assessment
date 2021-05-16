@@ -1,0 +1,30 @@
+部分一难点
+1.iconfont引用,用了第三种引用方式,实现了图标的hover效果
+
+2.轮播图:(1)用到了for循环遍历包含三张图片的数组,还用了setInterval()函数,让轮播图每隔3s轮换图片.
+
+3.各种事件,比如前端工具和前端时间用了,鼠标点击两次事件例如这个onclick="add2();this.onclick=function(){ad2()}".
+还有鼠标停留事件,鼠标移走事件
+
+4.js控制各种事件触发时元素的显示和隐藏.
+
+5.四个动态盒子,css的悬浮盒子效果,有
+	(1) 中间什么都不加,控制子元素
+	(2)"+"控制同级元素(兄弟元素)
+	(3)"~"控制就近元素
+
+6.动态盒子里面的那个点击爱心和收集,用innerHTML做了点击后的变化.
+
+7.打开菜单时页面滚动条消失,像锁住了一样,用以下代码解决了
+	 document.documentElement.style.overflowY = 'hidden';
+   	 document.documentElement.style.overflowX = 'hidden';
+
+8.打开菜单时回到页面顶部:
+	document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+
+
+
+
+
+

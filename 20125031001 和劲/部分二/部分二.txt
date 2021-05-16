@@ -1,0 +1,113 @@
+部分二思路
+1.HTML
+(1)首先全部内容用一个类名为wrap的盒子装住
+
+(2)全选按钮由于截图以及网站那个效果不明显,我就把全选按钮做成了一个复选框.打√能
+清楚地知道全选了.
+
+(3)定义了ul列表
+
+(4)加了all(全部事件) active(未完成事件) complete(完成事件)三个单选框,由于时间关系
+没有做成网站上的按钮式. 还加了一个Clear completed(清除所有事件)的按钮.
+
+2.CSS
+(1)css就是很常规的css啦.
+
+(2)复选框和单选框用了after伪类修改了样式
+
+(3)使用了empty伪类让切换状态的div盒子在todoList没有内容的时候消失
+(因为empty伪类选择器能匹配没有任何子元素（包括text节点）的元素)
+
+(4)用label标签做了一个类似按钮的效果,在点击点选框的文字时也会选中该单选框.
+
+(5)用子代选择器选择单选框的值,来做点击all(全部事件) active(未完成事件) 
+complete(完成事件)三个不同单选框列表的未完成事件和完成事件的显示和隐藏.在css
+文件里有注释
+
+3.JS
+(1)主要功能有: 1.save()函数用来保存添加或编辑修改的待办事项
+
+               	       2.setSelectAllAndLeftCountAndClearBtn()函数用来关联
+	       已完成与未完成的条目，同步更新全选按钮、底部待办事项计数器
+	
+	       3.addTodo()函数用于添加以及编辑待办事项.
+
+	       4.全选按钮 编辑输入内容 删除所有事件按钮 按回车添加待办事项等
+
+(2)思路:
+	1.首先用一个统一的document.querySelector()的方法获取HTML中的id 类名
+	等的首元素,并返回静态变量.以便以下函数使用.
+
+	2.用e代表事件event对象,it代表todoList的所有节点的集合.
+
+	3.用箭头函数=>简化代码,不用命名这么多函数
+
+	4.首先是all(全部事件) active(未完成事件) complete(完成事件)三个单选框,当
+	点击这三个单选框时,先设置断点debugger和console.log()以便进行调试,然后
+	先删除原来选择的类名再添加目前所选择的类名,类似一个更新的状态.
+
+	
+	5.计数器,创建setSelectAllAndLeftCountAndClearBtn()函数用来关联已完成与未完成的条目，同步更新全选按钮、底部待办事项.	
+    	  var actives = todoList.querySelectorAll('input:first-child:not(:checked)'),将未完成事件赋值给active变量,
+    	  var completeds = todoList.querySelectorAll('input:first-child:checked'),将完成事件赋值给completed变量.
+	 用多层嵌套if else语句判断,(1)当actives的长度存在时(即为true),全选按钮为false.反之,全选按钮为true即全选.
+			             当actives.length==1时,左下角为"1 item left".当actives.length!==1时,左下角为actives.length + " items left".
+			         (2)当completed长度存在时,清除已完成事项的按钮出现,反之,隐藏.
+
+
+
+	6.关于添加待办事项,定义函数addTodo(todo)和定义变量
+	todoText并赋值为参数todo的内容.然后用trim()函数去除输入内容的首尾空格
+	并判断输入内容是否为空文本.,如果输入内容有效(即不为空文本),用document.createElement()
+	创建li元素节点,然后给li元素添加在css中的todo-item样式,并且当todo参数的值为completed时
+	li元素也添加类名completed.再创建一个input的元素节点用作选择框,并定义变量checkbox,将checkbox的checked值与
+	todo.completed关联,用onchange事件以及if else语句,当判断if中的checkbox.checked为真,即选中时,为li元素添加类名completed,
+	反之,移除li元素节点的completed值,即取消选中.
+	
+	7.关于编辑待办事项,创建span元素节点,并获取添加待办事项的文本内容,先使用ondblclick双击事件,以降低误触编辑事件的概率,
+	然后双击时添加editing类名,并在编辑文本域时设置焦点.再定义editBox变量与新创建的input元素节点相对应.然后匹配在添加待办事项时
+	输入的文本,然后用onblur事件,当文本失去焦点时将span节点的文本内容与editBox的值相对应,再保存.
+
+	8.删除单个事项按钮,创建一个button元素节点,当点击改按钮时,触发删除todoList的对应的li节点事件.如果todoList的子元素没有了,则
+	隐藏底下的四个按钮,如果仍然有子元素li,则li元素节点添加checkbox, span, editBox, deleteBtn四个变量,并且显示这四个按钮.
+	
+	9.清除所有已完成事项,用document.querySelectorAll(.completed)选中所有已完成事件的li节点,然后去除it,同时隐藏该按钮.
+
+	10.创建save()函数用来保存添加或编辑修改的待办事项,先用map函数遍历li数组中的元素并返回li元素更新后的值,然后用
+	localStorage.todos = JSON.stringify(todos)将todos转换成字符串进行储存.
+
+	11.在每一个函数后面加上save()函数保存改变值,还有加上setSelectAllAndLeftCountAndClearBtn()函数
+	来关联已完成与未完成的条目，同步更新全选按钮、底部待办事项.
+
+	
+	12.全选按钮:   先用todoList.querySelectorAll('li.completed')获取所有值为completed的li元素节点
+			var completeds = todoList.querySelectorAll('li.completed').
+			用Array.from()for each()将todoList的子元素类数组转化成数组并遍历数组中的元素,然后用if else语句
+			通过completeds.length 与 todoList.children.length的比较判断是否全选.
+
+附加题思路:
+	1.首先在HTML文件建立li标签以及相应的checkbox 还有span button这些待办事项里包含的标签
+
+	2.在js文件中,利用window.onload()方法在加载完HTML文档后立刻执行该函数.
+	
+	3.在2的函数里,用map函数遍历在HTML中已经创建好的li元素数组并返回li元素的值.然后保存在本地.
+
+	4.用document.getElementById()的方法,分别获取li , input [type=checkbox] , span , 以及button等对象.
+	
+	5. 例如:第一个事项 checkboxone.checked = todo.completed; 将checkbox的选定值和todo的完成事项值所绑定.
+	
+	6.默认选中第一和第二个事项,  以第一项事项为例 先设置  checkboxone.checked=  true; lione.classList.add('completed');lione.style.cssText = "decoration: line-through";
+	   还要加setSelectAllAndLeftCountAndClearBtn()函数来关联已完成与未完成的条目，同步更新全选按钮、底部待办事项.	
+	   最后用if else语句判断选中与未选中,并执行相应条件,例如选中时会有一条线穿过事件文字.
+	
+	7.添加点击删除事件,以事项1为例,先用document.getElementById()的方法获取lione对象,然后用lione的父节点即ul删除lione自身 即lione.parentNode.removeChild(lione);
+	   最后用setSelectAllAndLeftCountAndClearBtn()来关联已完成与未完成的条目，同步更新全选按钮、底部待办事项.并将该事件绑定在HTML的button标签上.
+
+							
+
+	
+	
+
+	
+
+	

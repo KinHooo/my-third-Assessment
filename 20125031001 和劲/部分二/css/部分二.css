@@ -1,0 +1,196 @@
+body{
+    font: 14px "Helvetica";
+    line-height: 1.4em;
+    background: #f5f5f5;
+    color: #4d4d4d;
+    min-width: 230px;
+    max-width: 550px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+/*编辑待办事项的输入框*/
+.todo-item input[type="text"] {
+    display: none;
+    font-size: 20px;
+}
+
+/*内边距设置*/
+.todo-item {
+    padding: 15px 15px 15px 60px;
+}
+
+/*顶部输入框*/
+.todo-head {
+    padding: 16px 16px 16px 60px;
+    border-bottom: 1px solid #ededed;
+}
+
+.todo-head input[type="text"]{
+    width: 80%;
+    border-width: 0px;
+    outline: none;
+    font: 20px "Helvetica";
+    color: #4d4d4d;
+}
+
+.todo-head input[type="text"]::placeholder {
+    color: #d9d9d9;
+    font: 20px Helvetica;
+    font-weight: 100;
+    font-style: italic;
+}
+/*main部分*/
+.wrap {
+    background: #fff;
+    margin: 130px 0 40px 0;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+/*todos标题*/
+.wrap h3 {
+    position: absolute;
+    top: -165px;
+    font-size: 100px;
+    font-weight: 100;
+    padding-left: 28%;
+    color: rgba(175, 47, 47, 0.25);
+    text-align: center;
+}
+/*待办事项列表样式*/
+.todo-item button {
+    display: none;
+    position: absolute;
+    right: 20px;
+}
+
+.todo-item:hover button {
+    display: inline-block;
+    position: absolute;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    color: #cc9a9a;
+    font-size: 20px;
+    right: 20px;
+}
+#firstalll{
+    position: relative;
+    left: 3px;
+    bottom: 1px;
+}
+
+#secondact{
+    position: relative;
+    left: 3px;
+    bottom: 1px;
+}
+
+#threecom{
+    position: relative;
+    left: 3px;
+    bottom: 1px;
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: #d9d9d9;
+}
+
+.todo-item.editing span {
+    display: none;
+}
+
+.todo-item.editing input[type="text"] {
+    display: inline-block;
+    width: 400px;
+    height: 30px;
+    outline: none;
+    border: 1px solid #d9d9d9; 
+}
+
+ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    padding-top: 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+/*使用empty伪类让 .state在list没内容时消失*/
+#todo-list:empty+.state {
+    display: none;
+}
+
+#todo-list li {
+    list-style: none;
+    font-size: 24px;
+    border-bottom: 1px solid #ededed;
+}
+#todo-list li span{
+    position: relative;
+    top: 7px;
+    word-break: break-all;
+}
+/*在点击completed时未完成事项消失*/
+ul.completed li:not(.completed) {
+    display: none;
+}
+/*在点击active时已完成事项消失*/
+ul.active li.completed {
+    display: none;
+}
+
+.state {
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 20px;
+  height: 20px;
+  font-size: 0.9rem;
+  visibility: hidden;
+  vertical-align: middle;
+}
+input[type='checkbox']::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: -47px;
+  background-color: #fff;
+  color: #94f585;
+  border: 1px solid grey;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  visibility: visible;
+  padding-left: 0px;
+  text-align: center;
+  content: ' ';
+  border-radius: 50%;
+}
+
+input[type='checkbox']:checked::after {
+  content: '✓';
+  font-size: 1.5rem;
+}
+
+#category-select{
+  margin-left: 83px;
+}
+
+#clear-completed{
+    background-color: #fff;
+    margin-left: 48px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+#clear-completed:hover{
+    text-decoration: underline;
+}

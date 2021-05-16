@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>部分二</title>
+  <link rel="stylesheet" type="text/css" href="./css/部分二.css">
+</head>
+<body>
+  <div class="wrap">
+    <h3>todos</h3>
+    <div class="todo-head">
+<!-- 顶部输入框 -->
+        <!-- 全选按钮 -->
+        <input type="checkbox" id="toggle-select-all">
+        <input type="text" id="todo-input" placeholder="What needs to be done?">
+    </div>
+<!-- 列表 -->
+    <ul id="todo-list" class="all">
+      <li id="lione" class="todo-item">
+        <input id="cone" class="ccone" type="checkbox" name="a" />
+        <span id="wzone">大一上学期</span>
+        <button onclick="add1()">x</button>
+      </li>
+      <li id="litwo" class="todo-item">
+        <input id="ctwo" class="ccone" type="checkbox" name="a" />
+        <span id="wztwo">高中三年</span>
+        <button onclick="add2()">x</button>
+      </li>      
+      <li id="lithree" class="todo-item">
+        <input id="cthree" type="checkbox" />
+        <span id="wzthree">第三轮考核</span>
+        <button onclick="add3()">x</button>
+      </li>
+      <li id="lifour" class="todo-item">
+        <input id="cfour" type="checkbox" />
+        <span id="wzfour">成为网园一份子</span>
+        <button onclick="add4()">x</button>
+      </li>
+      <li id="lifive" class="todo-item">
+        <input id="cfive" type="checkbox" />
+        <span id="wzfive">努力学习</span>
+        <button onclick="add5()">x</button>
+      </li>
+    </ul>
+<!-- 切换状态 -->
+    <div class="state">
+<!-- 事件计数器 -->
+      <span class="left-count">items left</span>
+<!-- 四个功能 -->
+      <span id="category-select">
+<!-- checked name预选All -->
+        <label><input type="radio" checked name="selected" value="all"><span id="firstalll">All</span></label>
+        <label><input type="radio" name="selected" value="active"><span id="secondact">Active</span></label>
+        <label><input id="thirdbut" type="radio" name="selected" value="completed" ><span id="threecom">Completed</span></label>
+      </span>
+      <button id="clear-completed">Clear completed</button>
+    </div>
+  </div>
+
+    <script src="./js/部分二.js"></script>
+
+
+
+</body>
+
+</html>
